@@ -139,11 +139,11 @@ function ArrayToCSVRow (arry, delimiter, lineBreak) {
             if (cell) {
                 
                 // use quotation marks when delimiter is found in a cell
-                if (cell.indexOf(delimiter) > -1) {
+                if (cell.indexOf(delimiter) > -1 || cell.indexOf("\n") > -1) {
                     
                     if (cell.indexOf('"') > -1) {
                         
-                        cell = cell.replace('"', '\"');
+                        cell = cell.replace('"', '""');
                     }
                     
                     cell = '"' + cell + '"';
@@ -151,7 +151,7 @@ function ArrayToCSVRow (arry, delimiter, lineBreak) {
                 
                 string += cell + delimiter;
             }
-            else string += delimiter;
+            else string += '""' + delimiter;
     }
     
     string += lineBreak;
